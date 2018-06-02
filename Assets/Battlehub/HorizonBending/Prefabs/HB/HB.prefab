@@ -1,0 +1,254 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &101814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 493124}
+  - component: {fileID: 11416348}
+  m_Layer: 0
+  m_Name: HB
+  m_TagString: Untagged
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &493124
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 101814}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &11416348
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 101814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a81c4e7723c78d54aa891ccbbac295b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Curvature: 5
+  Flatten: 0
+  HorizonZOffset: 0
+  HorizonYOffset: 0
+  HorizonXOffset: 0
+  BendingMode: 0
+  RaycastStride: 1
+  FixBoundsRadius: 50
+  FixFieldOfView: 0
+  FixOrthographicSize: 0
+  FixLightsPositionCamera: {fileID: 0}
+  ExcludeGameObjects: []
+  Materials: []
+  LockMaterials: 0
+  m_defaultMaterial: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_defaultParticle: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  HBDefaultMaterial: {fileID: 2100000, guid: 2f10ba805c32c0f4d90d401a4f506ab4, type: 2}
+  HBDefaultParticle: {fileID: 2100000, guid: 54b212e8c5a34484cbe040ec3277e8e2, type: 2}
+  HBDefaultUI: {fileID: 2100000, guid: 84d9892e139c2044a8de81162ab8eb38, type: 2}
+  HBDefaultLeaves: {fileID: 2100000, guid: 95c48492cf8ab4941b6783667ad7eb7d, type: 2}
+  HBDefaultBark: {fileID: 2100000, guid: cd79aa4bfcec7eb41827ac8b2a07c6aa, type: 2}
+  DefaultTreeCreatorLeaves: {fileID: 2100000, guid: 0fd285c333276b64aa15b8a45b2fd1c6,
+    type: 2}
+  DefaultTreeCreatorBark: {fileID: 2100000, guid: fee86461a3e936945a498d4d3c8d65b8,
+    type: 2}
+  HBShaders:
+  - Battlehub/HB_Standard
+  - Battlehub/HB_Standard (Specular setup)
+  - Battlehub/Legacy Shaders/HB_VertexLit
+  - Battlehub/Legacy Shaders/HB_Diffuse
+  - Battlehub/Legacy Shaders/HB_Decal
+  - Battlehub/FX/HB_Flare
+  - Battlehub/Legacy Shaders/HB_Diffuse Fast
+  - Battlehub/Legacy Shaders/HB_Diffuse Detail
+  - Battlehub/Legacy Shaders/HB_Specular
+  - Battlehub/Legacy Shaders/HB_Bumped Diffuse
+  - Battlehub/Legacy Shaders/HB_Bumped Specular
+  - Battlehub/Legacy Shaders/HB_Parallax Diffuse
+  - Battlehub/Legacy Shaders/HB_Parallax Specular
+  - Battlehub/Unlit/HB_Color
+  - Battlehub/Unlit/HB_Texture
+  - Battlehub/Unlit/HB_Transparent
+  - Battlehub/Unlit/HB_Transparent Cutout
+  - Battlehub/Sprites/HB_Default
+  - Battlehub/Sprites/HB_Diffuse
+  - Battlehub/Mobile/HB_Bumped Diffuse
+  - Battlehub/Mobile/HB_Bumped Specular
+  - Battlehub/Mobile/HB_Bumped Specular (1 Directional Light)
+  - Battlehub/Mobile/HB_Diffuse
+  - Battlehub/Mobile/HB_Unlit (Supports Lightmap)
+  - Battlehub/Mobile/HB_VertexLit (Only Directional Lights)
+  - Battlehub/Mobile/Particles/HB_Additive
+  - Battlehub/Mobile/Particles/HB_Alpha Blended
+  - Battlehub/Mobile/Particles/HB_VertexLit Blended
+  - Battlehub/Mobile/Particles/HB_Multiply
+  - Battlehub/Legacy Shaders/Transparent/HB_Bumped Diffuse
+  - Battlehub/Legacy Shaders/Transparent/HB_Bumped Specular
+  - Battlehub/Legacy Shaders/Transparent/HB_Diffuse
+  - Battlehub/Legacy Shaders/Transparent/HB_Specular
+  - Battlehub/Legacy Shaders/Transparent/HB_Parallax Diffuse
+  - Battlehub/Legacy Shaders/Transparent/HB_Parallax Specular
+  - Battlehub/Legacy Shaders/Transparent/HB_VertexLit
+  - Battlehub/Legacy Shaders/Transparent/Cutout/HB_Bumped Diffuse
+  - Battlehub/Legacy Shaders/Transparent/Cutout/HB_Bumped Specular
+  - Battlehub/Legacy Shaders/Transparent/Cutout/HB_Diffuse
+  - Battlehub/Legacy Shaders/Transparent/Cutout/HB_Specular
+  - Battlehub/Legacy Shaders/Transparent/Cutout/HB_Soft Edge Unlit
+  - Battlehub/Legacy Shaders/Transparent/Cutout/HB_VertexLit
+  - Battlehub/Legacy Shaders/Self-Illumin/HB_Bumped Diffuse
+  - Battlehub/Legacy Shaders/Self-Illumin/HB_Bumped Specular
+  - Battlehub/Legacy Shaders/Self-Illumin/HB_Diffuse
+  - Battlehub/Legacy Shaders/Self-Illumin/HB_Specular
+  - Battlehub/Legacy Shaders/Self-Illumin/HB_Parallax Diffuse
+  - Battlehub/Legacy Shaders/Self-Illumin/HB_Parallax Specular
+  - Battlehub/Legacy Shaders/Self-Illumin/HB_VertexLit
+  - Battlehub/Legacy Shaders/Lightmapped/HB_Bumped Diffuse
+  - Battlehub/Legacy Shaders/Lightmapped/HB_Bumped Specular
+  - Battlehub/Legacy Shaders/Lightmapped/HB_Diffuse
+  - Battlehub/Legacy Shaders/Lightmapped/HB_Specular
+  - Battlehub/Legacy Shaders/Lightmapped/HB_VertexLit
+  - Battlehub/Legacy Shaders/Reflective/HB_Bumped Diffuse
+  - Battlehub/Legacy Shaders/Reflective/HB_Bumped Unlit
+  - Battlehub/Legacy Shaders/Reflective/HB_Bumped Specular
+  - Battlehub/Legacy Shaders/Reflective/HB_Bumped VertexLit
+  - Battlehub/Legacy Shaders/Reflective/HB_Diffuse
+  - Battlehub/Legacy Shaders/Reflective/HB_Specular
+  - Battlehub/Legacy Shaders/Reflective/HB_Parallax Diffuse
+  - Battlehub/Legacy Shaders/Reflective/HB_Parallax Specular
+  - Battlehub/Legacy Shaders/Reflective/HB_VertexLit
+  - Battlehub/Particles/HB_Additive
+  - Battlehub/Particles/HB_~Additive-Multiply
+  - Battlehub/Particles/HB_Additive (Soft)
+  - Battlehub/Particles/HB_Alpha Blended
+  - Battlehub/Particles/HB_Blend
+  - Battlehub/Particles/HB_Multiply
+  - Battlehub/Particles/HB_Multiply (Double)
+  - Battlehub/Particles/HB_Alpha Blended Premultiply
+  - Battlehub/Particles/HB_VertexLit Blended
+  - Battlehub/Nature/HB_Tree Creator Bark
+  - Battlehub/Nature/HB_Tree Creator Leaves
+  - Battlehub/Nature/HB_Tree Creator Leaves Fast
+  - Battlehub/Nature/HB_Tree Soft Occlusion Bark
+  - Battlehub/Nature/HB_Tree Soft Occlusion Leaves
+  - Battlehub/Nature/HB_SpeedTree
+  - Battlehub/Nature/HB_SpeedTree Billboard
+  - Battlehub/Nature/Terrain/HB_Diffuse
+  - Battlehub/Nature/Terrain/HB_Specular
+  - Battlehub/Nature/Terrain/HB_Standard
+  - Battlehub/FX/HB_Water4
+  - Battlehub/FX/HB_SimpleWater4
+  - Battlehub/FX/HB_Water (Basic)
+  - Battlehub/FX/HB_Water
+  - Battlehub/FX/Glass/HB_Stained BumpDistort
+  - Battlehub/Projector/HB_Light
+  - Battlehub/Projector/HB_Multiply
+  - Battlehub/Tessellation/HB_Bumped Specular (displacement)
+  - Battlehub/Tessellation/HB_Bumped Specular (smooth)
+  - Battlehub/Toon/HB_Basic
+  - Battlehub/Toon/HB_Basic Outline
+  - Battlehub/Toon/HB_Lit
+  - Battlehub/Toon/HB_Lit Outline
+  - Battlehub/Particles/HB_Priority Additive
+  - Battlehub/Particles/HB_Priority Additive (Soft)
+  - Battlehub/Particles/HB_Priority Alpha Blended
+  - Battlehub/UI/HB_Default
+  - Battlehub/UI/HB_Default Font
+  CustomShaders: []
+  AttachToCamera: 0
+  m_appliedRadius: 86.4
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_materials.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: CustomShaders.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Up
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: SkinnedUp
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Curvature
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: FixBoundsRadius
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2b9531438e7cbdf43b4c0e562bc32d49, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2f10ba805c32c0f4d90d401a4f506ab4, type: 2}
+    - target: {fileID: 0}
+      propertyPath: HBDefaultUI
+      value: 
+      objectReference: {fileID: 2100000, guid: 84d9892e139c2044a8de81162ab8eb38, type: 2}
+    - target: {fileID: 0}
+      propertyPath: HBDefaultLeaves
+      value: 
+      objectReference: {fileID: 2100000, guid: 95c48492cf8ab4941b6783667ad7eb7d, type: 2}
+    - target: {fileID: 0}
+      propertyPath: HBDefaultBark
+      value: 
+      objectReference: {fileID: 2100000, guid: cd79aa4bfcec7eb41827ac8b2a07c6aa, type: 2}
+    - target: {fileID: 0}
+      propertyPath: DefaultTreeCreatorLeaves
+      value: 
+      objectReference: {fileID: 2100000, guid: 0fd285c333276b64aa15b8a45b2fd1c6, type: 2}
+    - target: {fileID: 0}
+      propertyPath: DefaultTreeCreatorBark
+      value: 
+      objectReference: {fileID: 2100000, guid: fee86461a3e936945a498d4d3c8d65b8, type: 2}
+    - target: {fileID: 0}
+      propertyPath: CustomShaders.Array.data[0]
+      value: 
+      objectReference: {fileID: 4800000, guid: 75af86f3617563146abd71af0505c5da, type: 3}
+    - target: {fileID: 0}
+      propertyPath: CustomShaders.Array.data[1]
+      value: 
+      objectReference: {fileID: 4800000, guid: 9c80303e9ea874ebdbdcf38ddc033557, type: 3}
+    - target: {fileID: 0}
+      propertyPath: CustomShaders.Array.data[2]
+      value: 
+      objectReference: {fileID: 4800000, guid: 71a548f09ccb7d745992a8310d21dfd7, type: 3}
+    - target: {fileID: 0}
+      propertyPath: CustomShaders.Array.data[3]
+      value: 
+      objectReference: {fileID: 4800000, guid: 8d233dbffb98b574ba11424c469dcdbc, type: 3}
+    - target: {fileID: 0}
+      propertyPath: CustomShaders.Array.data[4]
+      value: 
+      objectReference: {fileID: 4800000, guid: f4c8113f1894c5147b7c6241064e6e03, type: 3}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 101814}
+  m_IsPrefabParent: 1

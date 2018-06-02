@@ -1,0 +1,227 @@
+﻿Shader "Battlehub/Legacy Shaders/Transparent/Cutout/HB_VertexLit" {
+Properties {
+	_Color ("Main Color", Color) = (1,1,1,1)
+	_Emission("Emissive Color", Color) = (0,0,0,0)
+	_MainTex ("Base (RGB) Trans (A)", 2D) = "white" {}
+	_Cutoff ("Alpha cutoff", Range(0,1)) = 0.5
+}
+
+SubShader {
+	Tags {"Queue"="AlphaTest" "IgnoreProjector"="True" "RenderType"="TransparentCutout"}
+	LOD 100
+	
+	// Non-lightmapped
+	Pass {
+		Tags { "LightMode" = "Vertex" }
+		Alphatest Greater [_Cutoff]
+		AlphaToMask True
+		ColorMask RGB
+	
+		Lighting On
+		CGPROGRAM
+		
+		HB_FEATURE
+		#pragma vertex vert
+		#pragma fragment frag
+		#pragma multi_compile_fog
+		#include "UnityCG.cginc"
+		#include "../../../CGIncludes/HB_Core.cginc"
+
+		struct v2f {
+			float2 uv : TEXCOORD0;
+			UNITY_FOG_COORDS(1)
+			fixed4 diff : COLOR0;
+			float4 pos : SV_POSITION;
+		};
+
+		uniform float4 _MainTex_ST;
+		uniform float4 _Color;
+		uniform fixed _Cutoff;
+		uniform float4 _Emission;
+
+		v2f vert(appdata_base v)
+		{
+			v2f o;
+			
+			HB(v.vertex)
+			o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+			o.uv = TRANSFORM_TEX(v.texcoord,_MainTex);
+			float4 diffuse = float4(ShadeVertexLightsFull(v.vertex, v.normal, 4, true), 1.0f);
+			float4 emission = float4(_Emission.rgb, 0.0f);
+			o.diff = saturate(diffuse * _Color + emission) + emission;
+			UNITY_TRANSFER_FOG(o,o.pos);
+			return o;
+		}
+
+		uniform sampler2D _MainTex;
+
+		fixed4 frag(v2f i) : SV_Target
+		{
+			fixed4 temp = tex2D(_MainTex, i.uv) ;
+			fixed4 c;
+			c.xyz = temp.xyz * i.diff.xyz ;
+			c.w = temp.w * i.diff.w;
+			UNITY_APPLY_FOG(i.fogCoord, c);
+			clip(c.w - _Cutoff) ;
+			return c;
+		}
+		ENDCG
+	}
+	
+	// Lightmapped, encoded as dLDR
+	Pass {
+		Tags { "LightMode" = "VertexLM" }
+		Alphatest Greater [_Cutoff]
+		AlphaToMask True
+		ColorMask RGB
+		
+		CGPROGRAM
+		#include "../../../CGIncludes/HB_Core.cginc"
+		HB_FEATURE
+		#pragma vertex vert
+		#pragma fragment frag
+		#pragma multi_compile_fog
+
+		#include "UnityCG.cginc"
+
+		struct v2f {
+			half2 uv : TEXCOORD0;
+			half2 uv2 : TEXCOORD1;
+			UNITY_FOG_COORDS(2)
+			float4 pos : SV_POSITION;
+		};
+
+		uniform float4 _MainTex_ST;
+
+		v2f vert(float4 vertex : POSITION, float2 uv : TEXCOORD0, float2 uv2 : TEXCOORD1)
+		{
+			v2f o;
+			
+			HB(vertex)
+			o.pos = mul(UNITY_MATRIX_MVP, vertex);
+			o.uv = TRANSFORM_TEX(uv,_MainTex);
+			o.uv2 = uv2 * unity_LightmapST.xy + unity_LightmapST.zw;
+			UNITY_TRANSFER_FOG(o,o.pos);
+			return o;
+		}
+
+		uniform sampler2D _MainTex;
+		uniform fixed4 _Color;
+		uniform fixed _Cutoff;
+
+		fixed4 frag(v2f i) : SV_Target
+		{
+			fixed4 lm = UNITY_SAMPLE_TEX2D(unity_Lightmap, i.uv2) * _Color;
+			fixed4 c = tex2D(_MainTex, i.uv);
+			c.rgb *= lm.rgb * 2;
+			UNITY_APPLY_FOG(i.fogCoord, c);
+			clip(c.w - _Cutoff);
+			return c;
+		}
+		ENDCG
+	}
+	
+	// Lightmapped, encoded as RGBM
+	Pass {
+		Tags { "LightMode" = "VertexLMRGBM" }
+		Alphatest Greater [_Cutoff]
+		AlphaToMask True
+		ColorMask RGB
+		
+		CGPROGRAM
+		#include "../../../CGIncludes/HB_Core.cginc"
+		HB_FEATURE
+		#pragma vertex vert
+		#pragma fragment frag
+		#pragma multi_compile_fog
+
+		#include "UnityCG.cginc"
+
+		struct v2f {
+			half2 uv : TEXCOORD0;
+			half2 uv2 : TEXCOORD1;
+			UNITY_FOG_COORDS(2)
+			float4 pos : SV_POSITION;
+		};
+
+		uniform float4 _MainTex_ST;
+
+		v2f vert(float4 vertex : POSITION, float2 uv : TEXCOORD0, float2 uv2 : TEXCOORD1)
+		{
+			v2f o;
+			
+			HB(vertex)
+			o.pos = mul(UNITY_MATRIX_MVP, vertex);
+			o.uv = TRANSFORM_TEX(uv,_MainTex);
+			o.uv2 = uv2 * unity_LightmapST.xy + unity_LightmapST.zw;
+			UNITY_TRANSFER_FOG(o,o.pos);
+			return o;
+		}
+
+		uniform sampler2D _MainTex;
+		uniform fixed4 _Color;
+		uniform fixed _Cutoff;
+
+		fixed4 frag(v2f i) : SV_Target
+		{
+			fixed4 lm = UNITY_SAMPLE_TEX2D(unity_Lightmap, i.uv2);
+			lm *= lm.a * 2;
+			lm *= _Color;
+			fixed4 c = tex2D(_MainTex, i.uv);
+			c.rgb *= lm.rgb * 4;
+			UNITY_APPLY_FOG(i.fogCoord, c);
+			clip(c.w - _Cutoff);
+			return c;
+		}
+		ENDCG
+	}
+	
+	// Pass to render object as a shadow caster
+	Pass {
+		Name "Caster"
+		Tags { "LightMode" = "ShadowCaster" }
+		
+		CGPROGRAM
+		#pragma vertex vert
+		#pragma fragment frag
+		#pragma target 2.0
+		#pragma multi_compile_shadowcaster
+		HB_FEATURE
+		#include "UnityCG.cginc"
+		#include "../../../CGIncludes/HB_Core.cginc"
+
+
+		struct v2f { 
+			V2F_SHADOW_CASTER;
+			float2  uv : TEXCOORD1;
+		};
+
+		uniform float4 _MainTex_ST;
+	
+		v2f vert( appdata_base v )
+		{
+			v2f o;
+			
+			HB(v.vertex)
+			TRANSFER_SHADOW_CASTER_NORMALOFFSET(o)
+			o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);
+			return o;
+		}
+
+		uniform sampler2D _MainTex;
+		uniform fixed _Cutoff;
+		uniform fixed4 _Color;
+
+		float4 frag( v2f i ) : SV_Target
+		{
+			fixed4 texcol = tex2D( _MainTex, i.uv );
+			clip( texcol.a*_Color.a - _Cutoff );	
+			SHADOW_CASTER_FRAGMENT(i)
+		}
+		ENDCG
+
+	}
+	
+}
+Fallback "Legacy Shaders/Transparent/Cutout/VertexLit"
+}
